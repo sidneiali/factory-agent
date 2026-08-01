@@ -1,0 +1,22 @@
+{
+  "writableRoots": [
+    ".factory",
+    "_factory_product",
+    "_factory_delivery",
+    "_factory_operations"
+  ],
+  "alwaysRequireApproval": [
+    "delete",
+    "git-push",
+    "deploy",
+    "publish",
+    "install-dependency",
+    "database-migration",
+    "modify-existing-application-file"
+  ],
+  "forbiddenAutomaticActions": [
+    "force-push",
+    "credential-write",
+    "disable-tests"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "name": "factory-agent",
+  "version": "0.1.0",
+  "description": "Fábrica de software multiagente orientada por especificações e evidências",
+  "type": "module",
+  "bin": {
+    "factory": "bin/factory.js"
+  },
+  "scripts": {
+    "test": "node --test",
+    "start": "node bin/factory.js",
+    "check": "node --check bin/factory.js && node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "agents/",
+    "bin/",
+    "lib/",
+    "schemas/",
+    "templates/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "ai-agents",
+    "software-development",
+    "sdd",
+    "cli",
+    "claude-code",
+    "codex"
+  ],
+  "license": "MIT"
+}

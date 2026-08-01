@@ -1,0 +1,15 @@
+{
+  "version": "{{VERSION}}",
+  "project": "{{PROJECT}}",
+  "language": "pt-BR",
+  "mode": "guided",
+  "folders": {
+    "product": "_factory_product",
+    "delivery": "_factory_delivery",
+    "operations": "_factory_operations"
+  },
+  "engines": [],
+  "agents": [],
+  "createdFiles": [],
+  "activeWork": null
+}

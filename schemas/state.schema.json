@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Factory Agent State",
+  "type": "object",
+  "required": ["version", "project", "folders", "engines", "agents", "createdFiles"],
+  "properties": {
+    "version": { "type": "string", "minLength": 1 },
+    "project": { "type": "string" },
+    "language": { "type": "string" },
+    "mode": { "enum": ["guided", "express"] },
+    "folders": {
+      "type": "object",
+      "required": ["product", "delivery", "operations"],
+      "additionalProperties": false,
+      "properties": {
+        "product": { "type": "string", "minLength": 1 },
+        "delivery": { "type": "string", "minLength": 1 },
+        "operations": { "type": "string", "minLength": 1 }
+      }
+    },
+    "engines": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "agents": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "createdFiles": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "activeWork": { "type": ["string", "null"] }
+  }
+}

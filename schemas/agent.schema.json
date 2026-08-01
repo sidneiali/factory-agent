@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Factory Agent Descriptor",
+  "type": "object",
+  "required": ["name", "description", "team", "role", "stage", "outputs", "writableRoots"],
+  "properties": {
+    "name": { "type": "string", "pattern": "^factory-[a-z0-9-]+$" },
+    "description": { "type": "string", "minLength": 10 },
+    "team": { "type": "string" },
+    "role": { "type": "string" },
+    "stage": { "type": "string" },
+    "outputs": { "type": "array", "items": { "type": "string" } },
+    "writableRoots": { "type": "array", "items": { "type": "string" } }
+  }
+}

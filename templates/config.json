@@ -1,0 +1,12 @@
+{
+  "workflow": {
+    "requireArchitectureApproval": true,
+    "requireImplementationApproval": true,
+    "requireQaApproval": true,
+    "requireAcceptanceApproval": true
+  },
+  "limits": {
+    "maxRepairLoops": 3,
+    "maxOpenQuestions": 5
+  }
+}
