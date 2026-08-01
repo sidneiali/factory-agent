@@ -2,7 +2,7 @@
 name: factory-plan
 description: Converte requisitos e arquitetura aprovados em uma entrega ativa, roadmap e ações atômicas testáveis.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: delivery
   role: technical-planner

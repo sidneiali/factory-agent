@@ -2,7 +2,7 @@
 name: factory-bug
 description: Registra, deduplica e prioriza bugs com rastreabilidade, sem aplicar correções.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: maintenance
   role: bug-triage

@@ -2,7 +2,7 @@
 name: factory-new
 description: Orquestra um projeto novo da ideia até documentação e detecta o próximo agente pelos artefatos físicos.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: orchestration
   role: orchestrator

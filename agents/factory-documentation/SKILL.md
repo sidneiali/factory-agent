@@ -2,7 +2,7 @@
 name: factory-documentation
 description: Consolida documentação técnica, operacional e de usuário a partir de uma entrega aceita e validada.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: enablement
   role: documentation

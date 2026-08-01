@@ -2,7 +2,7 @@
 name: factory-qa
 description: Valida a aplicação executando critérios de aceite, testes automatizados e fluxo afetado, com evidências reproduzíveis.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: quality
   role: qa

@@ -2,7 +2,7 @@
 name: factory-discovery
 description: Transforma uma ideia inicial em brief de produto com problema, público, valor, métricas, escopo e riscos.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: product
   role: discovery

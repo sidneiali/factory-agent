@@ -25,3 +25,30 @@ Aprovado pelo usuário em 2026-08-01.
 - [x] Adicionar testes automatizados focados nos fluxos da CLI e instalação.
 - [x] Instalar em projeto temporário e testar o fluxo principal da aplicação.
 - [x] Criar documentação da alteração, revisar Git e efetuar commit.
+
+---
+
+# Plano aprovado — Pi Agent e Ollama
+
+Aprovado pelo usuário em 2026-08-01.
+
+## Premissas
+
+- Pi Agent será uma engine hospedeira oficial, com extensão local em `.pi/extensions/factory-agent/`.
+- As skills serão instaladas também em `.pi/skills/` e continuarão universais em `.agents/skills/`.
+- Ollama poderá ser usado diretamente pelo runtime ou como provider ativo do Pi Agent.
+- Nenhuma instalação de Ollama ou download de modelo será automático.
+- Políticas de ferramentas serão aplicadas tecnicamente pela extensão do Pi.
+
+## Etapas
+
+- [x] Atualizar requisitos, arquitetura e contratos para Pi Agent e providers.
+- [x] Criar abstração de providers e cliente Ollama configurável.
+- [x] Implementar runtime de workflow e comandos `new`, `run`, `resume`, `approve` e `reject`.
+- [x] Adicionar detecção e instalação da engine Pi Agent.
+- [x] Implementar extensão TypeScript do Pi com comandos, ferramentas, status e persistência.
+- [x] Implementar proteção de arquivos e comandos nos eventos de ferramentas do Pi.
+- [x] Integrar o modelo ativo do Pi e o provider Ollama ao workflow.
+- [x] Adicionar e atualizar testes automatizados.
+- [x] Validar CLI, extensão Pi e integração Ollama disponível localmente.
+- [x] Atualizar documentação, revisar Git e efetuar commit.

@@ -1,0 +1,11 @@
+{
+  "active": "ollama",
+  "providers": {
+    "ollama": {
+      "enabled": true,
+      "baseUrl": "http://127.0.0.1:11434",
+      "model": "",
+      "timeoutMs": 120000
+    }
+  }
+}

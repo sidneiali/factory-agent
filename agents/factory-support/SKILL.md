@@ -2,7 +2,7 @@
 name: factory-support
 description: Faz intake de suporte, consulta evidências e classifica a solicitação sem alterar código.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: operations
   role: support

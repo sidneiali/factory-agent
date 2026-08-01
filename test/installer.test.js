@@ -51,9 +51,12 @@ test('update e uninstall preservam customização local', async (t) => {
   await installProject({ packageRoot, projectRoot: root, version: '0.1.0', projectName: 'Teste', engineIds: ['codex'] });
   const custom = join(root, '.agents/skills/factory-qa/SKILL.md');
   await appendFile(custom, '\ncustom-local\n', 'utf8');
+  await rm(join(root, '.factory/providers.json'));
 
-  await update({ root, _: [] }, { cwd: root, packageRoot, io: silent });
+  await update({ root, _: [] }, { cwd: root, packageRoot, version: '0.2.0', io: silent });
   assert.match(await readFile(custom, 'utf8'), /custom-local/);
+  assert.match(await readFile(join(root, '.factory/providers.json'), 'utf8'), /ollama/);
+  assert.equal((await loadState(root)).version, '0.2.0');
 
   await uninstall({ root, _: [] }, { cwd: root, packageRoot, io: silent });
   assert.match(await readFile(custom, 'utf8'), /custom-local/);

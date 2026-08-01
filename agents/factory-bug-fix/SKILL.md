@@ -2,7 +2,7 @@
 name: factory-bug-fix
 description: Reproduz, diagnostica e corrige bug registrado com dois gates e prova vermelho para verde.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: maintenance
   role: bug-fix

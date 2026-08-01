@@ -2,7 +2,7 @@
 name: factory-reviewer
 description: Revisa código e testes contra requisitos, arquitetura, segurança e escopo sem implementar silenciosamente.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: engineering
   role: code-reviewer

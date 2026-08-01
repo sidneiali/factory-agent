@@ -2,7 +2,7 @@
 name: factory-architect
 description: Define arquitetura greenfield, dados, interfaces, segurança, operação e decisões técnicas rastreáveis aos requisitos.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: architecture
   role: software-architect

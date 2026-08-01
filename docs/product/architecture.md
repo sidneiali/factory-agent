@@ -15,14 +15,19 @@ bin/factory.js
       ├── commands/update.js
       ├── commands/add-agent.js
       ├── commands/add-engine.js
+      ├── commands/provider.js
+      ├── commands/new.js / run.js / resume.js
+      ├── commands/approve.js / reject.js
       └── commands/uninstall.js
 
 lib/
-├── engines.js       detecção e catálogo de engines
+├── engines.js       detecção e catálogo de engines hospedeiras
 ├── installer.js     cópia não destrutiva e arquivos de entrada
 ├── manifest.js      SHA-256 e classificação intacto/modificado/ausente
 ├── state.js         leitura, escrita atômica e validação
-├── workflow.js      estágio físico e próximo agente
+├── workflow.js      estágio físico, gates e próximo agente
+├── runtime.js       execução e retomada do workflow
+├── providers/       contrato de modelos e cliente Ollama
 └── filesystem.js    utilitários confinados à raiz do projeto
 ```
 
@@ -42,6 +47,8 @@ lib/
 .factory_operations/
 .agents/skills/factory-*/
 .claude/skills/factory-*/  # quando Claude Code for selecionado
+.pi/skills/factory-*/      # quando Pi Agent for selecionado
+.pi/extensions/factory-agent/  # extensão local do Pi Agent; wrapper no repositório fonte
 ```
 
 ## Estado do workflow
@@ -70,7 +77,10 @@ Quando `actions.md` tiver checkbox aberto, o próximo agente é desenvolvimento.
 - Escrita atômica por arquivo temporário e rename para estado e manifestos.
 - Manifesto SHA-256 para preservar customizações.
 - Paths normalizados e confinados à raiz para impedir path traversal.
-- Skills universais em `.agents/skills`; espelho opcional em `.claude/skills`.
+- Skills universais em `.agents/skills`; espelhos opcionais em `.claude/skills` e `.pi/skills`.
+- Engines hospedeiras são separadas de providers de modelos.
+- O Pi Agent usa seu modelo ativo; o runtime direto usa a interface `ModelProvider`.
+- Ollama é acessado somente por URL configurável, sem download automático de modelos.
 
 ## Segurança
 
@@ -79,7 +89,9 @@ Quando `actions.md` tiver checkbox aberto, o próximo agente é desenvolvimento.
 - Update substitui apenas arquivos cujo hash ainda coincide com o manifesto.
 - Uninstall remove apenas arquivos intactos registrados como criados.
 - Agentes não recebem autorização implícita para push, deploy, exclusões ou instalação de dependências.
+- A extensão Pi intercepta `bash`, `write` e `edit`, bloqueando ou solicitando confirmação conforme a política.
+- A extensão local só é carregada pelo Pi depois que o projeto é confiável.
 
 ## Limitações conscientes
 
-As políticas descritas nas skills dependem da engine para execução. A CLI garante segurança no próprio ciclo de instalação, mas não atua como sandbox dos comandos executados pela engine.
+No Claude Code e Codex, as políticas continuam dependendo da engine. No Pi Agent, a extensão adiciona bloqueios técnicos para ferramentas conhecidas, mas ainda não constitui um sandbox do sistema operacional. Modelos Ollama variam em suporte a ferramentas e qualidade de respostas estruturadas.

@@ -2,7 +2,7 @@
 name: factory-requirements
 description: Converte o brief em requisitos funcionais, não funcionais, histórias e critérios de aceite rastreáveis.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: product
   role: requirements-engineer

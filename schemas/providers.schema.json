@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Factory Agent Providers",
+  "type": "object",
+  "required": ["active", "providers"],
+  "properties": {
+    "active": { "type": "string" },
+    "providers": {
+      "type": "object",
+      "required": ["ollama"],
+      "properties": {
+        "ollama": {
+          "type": "object",
+          "required": ["enabled", "baseUrl", "model", "timeoutMs"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "baseUrl": { "type": "string", "pattern": "^https?://" },
+            "model": { "type": "string" },
+            "timeoutMs": { "type": "integer", "minimum": 1000 }
+          }
+        }
+      }
+    }
+  }
+}

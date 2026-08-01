@@ -2,7 +2,7 @@
 name: factory-acceptance
 description: Conduz o aceite humano da entrega comparando requisitos, evidências de QA, riscos e limitações conhecidas.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: product
   role: acceptance

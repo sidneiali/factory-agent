@@ -6,13 +6,13 @@ Coordenar agentes especializados para transformar uma ideia em software validado
 
 ## Usuários
 
-- Pessoa desenvolvedora usando Claude Code ou Codex.
+- Pessoa desenvolvedora usando Claude Code, Codex, Pi Agent ou Ollama local.
 - Responsável de produto que aprova requisitos, arquitetura e aceite.
 
 ## Requisitos funcionais
 
 - **RF-001:** instalar skills e arquivos de entrada sem sobrescrever conteúdo existente.
-- **RF-002:** detectar Claude Code e Codex no projeto ou ambiente.
+- **RF-002:** detectar Claude Code, Codex e Pi Agent no projeto ou ambiente.
 - **RF-003:** persistir configuração, estado, políticas e arquivos criados em `.factory/`.
 - **RF-004:** iniciar e retomar um projeto pela presença dos artefatos físicos.
 - **RF-005:** conduzir discovery, requisitos, arquitetura, planejamento, desenvolvimento, revisão, QA, aceite e documentação.
@@ -24,6 +24,11 @@ Coordenar agentes especializados para transformar uma ideia em software validado
 - **RF-011:** exibir status e diagnóstico da instalação.
 - **RF-012:** atualizar arquivos intactos sem sobrescrever customizações locais.
 - **RF-013:** desinstalar somente arquivos comprovadamente criados pela ferramenta.
+- **RF-014:** instalar uma extensão local do Pi Agent com comandos, ferramentas, status e gates.
+- **RF-015:** configurar, testar e usar providers de modelo, começando pelo Ollama.
+- **RF-016:** iniciar, executar, retomar, aprovar e rejeitar etapas pela CLI.
+- **RF-017:** aplicar políticas de arquivos e comandos antes da execução de ferramentas no Pi Agent.
+- **RF-018:** usar o modelo ativo do Pi Agent sem acoplamento a um provider específico.
 
 ## Requisitos não funcionais
 
@@ -39,7 +44,7 @@ Coordenar agentes especializados para transformar uma ideia em software validado
 
 - Interface web.
 - Scheduler remoto ou execução distribuída.
-- Chamada direta a APIs de LLM.
+- APIs comerciais de LLM gerenciadas diretamente pelo Factory Agent.
 - Deploy automático.
 - Marketplace de agentes.
 - Engenharia reversa e migração de legado.
@@ -53,3 +58,7 @@ Coordenar agentes especializados para transformar uma ideia em software validado
 5. Update preserva uma skill customizada.
 6. Uninstall não remove arquivo modificado pelo usuário.
 7. Testes automatizados e fluxo temporário terminam com sucesso.
+8. `factory install --engines=pi-agent` instala extensão e skills locais válidas.
+9. A extensão do Pi registra comandos e ferramentas e bloqueia operações incompatíveis com as políticas.
+10. O provider Ollama lista modelos, testa conectividade e executa chat sem instalar ou baixar modelos.
+11. Os comandos de workflow persistem gates e retomam o próximo agente correto.

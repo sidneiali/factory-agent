@@ -21,6 +21,15 @@
     "engines": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
     "agents": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
     "createdFiles": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
-    "activeWork": { "type": ["string", "null"] }
+    "activeWork": { "type": ["string", "null"] },
+    "runtime": {
+      "type": ["object", "null"],
+      "properties": {
+        "status": { "type": "string" },
+        "currentAgent": { "type": ["string", "null"] },
+        "pendingGate": { "type": ["object", "null"] },
+        "approvals": { "type": "array" }
+      }
+    }
   }
 }

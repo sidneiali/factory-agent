@@ -2,7 +2,7 @@
 name: factory-developer
 description: Implementa ações aprovadas em pequenos incrementos, adiciona testes e registra evidências e progresso append-only.
 license: MIT
-compatibility: Claude Code, Codex
+compatibility: Claude Code, Codex, Pi Agent, Ollama runtime
 metadata:
   team: engineering
   role: developer
