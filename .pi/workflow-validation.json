@@ -1,0 +1,12 @@
+{
+  "autoAudit": true,
+  "strict": true,
+  "requireDocumentation": true,
+  "requireCommit": true,
+  "requireApplicationRun": true,
+  "testCommand": "npm test",
+  "applicationCommand": "node bin/factory.js --help",
+  "healthCheckCommand": "node bin/factory.js --version",
+  "commandTimeoutMs": 240000,
+  "maxStrictRetries": 2
+}
