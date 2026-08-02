@@ -10,6 +10,22 @@ A inteligência dos agentes é distribuída como skills Markdown e executada pel
 - Claude Code, Codex ou Pi Agent para executar as skills;
 - Ollama opcional para o provider local e o runtime direto.
 
+## Instalação pelo npm
+
+Execute sem instalar globalmente:
+
+```bash
+npx @sidnei_ali/factory-agent --help
+npx @sidnei_ali/factory-agent install --engines=pi-agent --project=MeuProjeto
+```
+
+Ou instale o comando `factory` globalmente:
+
+```bash
+npm install --global @sidnei_ali/factory-agent
+factory --version
+```
+
 ## Uso local
 
 ```bash

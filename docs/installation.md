@@ -8,6 +8,22 @@
 
 O Factory Agent não instala engines, Ollama, modelos ou dependências do projeto alvo.
 
+## Executar pelo npm
+
+Sem instalação global:
+
+```bash
+npx @sidnei_ali/factory-agent --help
+npx @sidnei_ali/factory-agent install --engines=pi-agent --project=MeuProjeto
+```
+
+Para disponibilizar o comando `factory` globalmente:
+
+```bash
+npm install --global @sidnei_ali/factory-agent
+factory --version
+```
+
 ## Instalação no projeto alvo
 
 Com o pacote disponível como comando `factory`:

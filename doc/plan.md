@@ -75,3 +75,25 @@ Aprovado pelo usuário em 2026-08-01.
 - [x] Validar exemplos, links internos, testes automatizados e execução da CLI.
 - [x] Remover definitivamente o diretório `reversa/` e sua regra no `.gitignore`.
 - [x] Criar o registro da alteração, revisar Git e efetuar commit.
+
+
+---
+
+# Plano aprovado — publicação GitHub e npm
+
+Aprovado pelo usuário em 2026-08-02.
+
+## Premissas
+
+- O repositório público é `https://github.com/sidneiali/factory-agent`.
+- O usuário npm autenticado é `sidnei_ali`.
+- O pacote público será `@sidnei_ali/factory-agent`, mantendo o comando global `factory`.
+- Nenhuma credencial será gravada ou exibida pelo projeto.
+
+## Etapas
+
+- [x] Atualizar metadados do pacote e instruções de instalação via npm e npx.
+- [x] Validar testes, conteúdo do pacote e instalação em pasta temporária.
+- [x] Criar o registro da publicação, revisar Git e efetuar commit.
+- [ ] Enviar o commit para `origin/main`.
+- [ ] Publicar no npm e validar o pacote público.

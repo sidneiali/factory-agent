@@ -1,5 +1,5 @@
 {
-  "name": "factory-agent",
+  "name": "@sidnei_ali/factory-agent",
   "version": "0.2.0",
   "description": "Fábrica de software multiagente orientada por especificações e evidências",
   "type": "module",
@@ -33,5 +33,16 @@
     "pi-agent",
     "ollama"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sidneiali/factory-agent.git"
+  },
+  "homepage": "https://github.com/sidneiali/factory-agent#readme",
+  "bugs": {
+    "url": "https://github.com/sidneiali/factory-agent/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
 }
