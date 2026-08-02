@@ -95,5 +95,7 @@ Aprovado pelo usuário em 2026-08-02.
 - [x] Atualizar metadados do pacote e instruções de instalação via npm e npx.
 - [x] Validar testes, conteúdo do pacote e instalação em pasta temporária.
 - [x] Criar o registro da publicação, revisar Git e efetuar commit.
-- [ ] Enviar o commit para `origin/main`.
+- [x] Enviar o commit para `origin/main`.
 - [ ] Publicar no npm e validar o pacote público.
+
+Impedimento: o registry recusou a publicação com `E403` porque a conta exige autenticação de dois fatores ou token granular com bypass de 2FA. A publicação permanece pendente até o usuário concluir esse gate diretamente no terminal.
