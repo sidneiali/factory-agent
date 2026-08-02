@@ -9,7 +9,7 @@ A ferramenta proposta deve receber uma ideia ou necessidade e coordenar agentes 
 ## 2. Base analisada
 
 - Repositório: `https://github.com/sandeco/reversa.git`
-- Clone local: `reversa/`
+- Referência local usada na análise: clone `reversa/`, removido após a consolidação documental em 2026-08-02
 - Branch verificada: `main`
 - Commit analisado: `4f574679399b7b4e567ba751baee3ac6849f7872`
 - Versão declarada no pacote: `1.2.57`
@@ -522,6 +522,8 @@ A diferenciação do novo produto deve estar em quatro pontos:
 O Reversa demonstra que a abordagem de **skills portáveis + estado em arquivos + artefatos operacionais + gates humanos** é viável. A nova ferramenta pode partir desse núcleo e reorganizá-lo como uma fábrica de software completa, em vez de uma plataforma centrada na extração de conhecimento legado.
 
 ## 14. Evidências consultadas
+
+Os caminhos abaixo registram a origem histórica da análise. O clone local foi removido depois que a documentação própria do Factory Agent foi concluída.
 
 - `reversa/README.md`
 - `reversa/package.json`

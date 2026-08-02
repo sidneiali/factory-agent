@@ -1,0 +1,36 @@
+site_name: Factory Agent
+site_description: Fábrica de software multiagente orientada por especificações e evidências
+site_author: Factory Agent contributors
+repo_name: factory-agent
+docs_dir: docs
+
+nav:
+  - Início: index.md
+  - Primeiros passos:
+      - Instalação: installation.md
+      - Uso: usage.md
+  - Referência:
+      - CLI: cli.md
+      - Configuração: configuration.md
+      - Engines: engines.md
+      - Providers: providers.md
+  - Guias:
+      - Workflow: workflow.md
+      - Agentes: agents.md
+      - Segurança: security.md
+      - Solução de problemas: troubleshooting.md
+  - Desenvolvimento:
+      - Arquitetura: architecture.md
+      - Contrato dos agentes: product/agent-contract.md
+      - Requisitos do produto: product/requirements.md
+      - Contribuição: contributing.md
+
+theme:
+  name: readthedocs
+  locale: pt_BR
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true

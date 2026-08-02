@@ -3,6 +3,3 @@ coverage/
 .factory/config.user.json
 *.tmp
 .DS_Store
-
-# Clone de referência local, não faz parte do Factory Agent
-/reversa/

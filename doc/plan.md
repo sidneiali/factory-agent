@@ -52,3 +52,26 @@ Aprovado pelo usuário em 2026-08-01.
 - [x] Adicionar e atualizar testes automatizados.
 - [x] Validar CLI, extensão Pi e integração Ollama disponível localmente.
 - [x] Atualizar documentação, revisar Git e efetuar commit.
+
+---
+
+# Plano aprovado — documentação e remoção da referência Reversa
+
+Aprovado pelo usuário em 2026-08-01.
+
+## Premissas
+
+- A documentação será própria do Factory Agent, em português do Brasil.
+- O Reversa será usado apenas como referência de organização e cobertura temática, sem cópia literal de identidade ou conteúdo.
+- A documentação será navegável por Markdown e configuração MkDocs, sem instalar dependências novas.
+- O diretório local `reversa/` será removido definitivamente somente após a documentação e seus links serem validados.
+
+## Etapas
+
+- [x] Inventariar a documentação do Reversa e confrontá-la com o comportamento atual do Factory Agent.
+- [x] Criar a estrutura documental e a navegação do Factory Agent.
+- [x] Documentar instalação, uso, CLI, configuração, engines, providers, workflow e segurança.
+- [x] Documentar arquitetura, solução de problemas e contribuição.
+- [x] Validar exemplos, links internos, testes automatizados e execução da CLI.
+- [x] Remover definitivamente o diretório `reversa/` e sua regra no `.gitignore`.
+- [x] Criar o registro da alteração, revisar Git e efetuar commit.

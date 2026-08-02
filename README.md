@@ -93,6 +93,16 @@ _factory_operations/  suporte e bugs
 - o runtime Ollama só aplica propostas após `factory approve` e não sobrescreve arquivos existentes;
 - a extensão e a CLI não constituem um sandbox do sistema operacional.
 
+## Documentação
+
+A documentação completa começa em [`docs/index.md`](docs/index.md) e pode ser navegada pela configuração [`mkdocs.yml`](mkdocs.yml). Ela cobre instalação, uso, CLI, configuração, engines, providers, workflow, agentes, segurança, troubleshooting, arquitetura e contribuição.
+
+Se MkDocs estiver disponível no ambiente:
+
+```bash
+mkdocs serve
+```
+
 ## Desenvolvimento
 
 ```bash
@@ -100,7 +110,7 @@ npm test
 npm run check
 ```
 
-A arquitetura e requisitos estão em `docs/product/`.
+Os contratos internos permanecem em `docs/product/`.
 
 ## Pi Agent e Ollama
 
