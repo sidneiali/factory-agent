@@ -183,3 +183,25 @@ Arquivos centrais envolvidos:
 - `docs/reversa-bridge.md`
 
 Próximo passo seguro: autenticar no npm com uma conta ou token autorizado para o escopo `@sidnei_ali` e repetir somente `npm publish --access public`; código, commit e push já foram concluídos.
+
+---
+
+# Plano aprovado — reformular README e publicar a versão 0.3.0
+
+Aprovado pelo usuário em 2026-08-03.
+
+## Premissas
+
+- A versão local `0.3.0` ainda não está publicada no npm; a versão pública verificada é `0.2.0`.
+- A reformulação documental será incluída em `0.3.0`, sem alteração de API ou comportamento.
+- Nenhuma credencial npm será armazenada ou exibida.
+- A publicação depende de uma sessão npm autenticada e autorizada para o escopo `@sidnei_ali`.
+
+## Etapas
+
+- [x] Reformular o `README.md` com proposta de valor, início rápido, engines, Reversa Bridge, arquitetura, comandos, segurança e links.
+- [x] Criar o registro obrigatório da alteração documental.
+- [x] Validar testes, CLI, links internos, pacote e comandos documentados.
+- [x] Revisar `git status`, `git diff` e conteúdo preparado para commit.
+- [ ] Criar commit e enviar para `origin/main`.
+- [ ] Publicar `@sidnei_ali/factory-agent@0.3.0` e validar a instalação pública por `npx`.

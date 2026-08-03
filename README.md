@@ -1,56 +1,103 @@
 # Factory Agent
 
-Fábrica de software multiagente que conduz uma ideia por requisitos, arquitetura, planejamento, desenvolvimento, revisão, QA, aceite, documentação e manutenção.
+[![npm](https://img.shields.io/npm/v/@sidnei_ali/factory-agent.svg)](https://www.npmjs.com/package/@sidnei_ali/factory-agent)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D20-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A inteligência dos agentes é distribuída como skills Markdown e executada pela engine já presente no ambiente. O Factory Agent suporta Claude Code, Codex e Pi Agent, além de um runtime direto para modelos Ollama locais. Ele não solicita nem armazena chaves de LLM.
+**Fábrica de software multiagente orientada por especificações, evidências e aprovação humana.**
+
+O Factory Agent conduz uma ideia por descoberta, requisitos, arquitetura, planejamento, desenvolvimento, revisão, QA, aceite e documentação. As mesmas regras cobrem suporte, triagem e correção de bugs, além da reconstrução rastreável de sistemas documentados pelo Reversa.
+
+A CLI administra instalação, estado, integridade e retomada. A inteligência especializada fica em skills Markdown portáveis, executadas por Claude Code, Codex ou Pi Agent. Para operação totalmente local, o runtime direto integra modelos do Ollama sem solicitar ou armazenar chaves de LLM.
+
+## Por que usar
+
+- **Estado físico verificável:** o próximo agente é derivado dos artefatos existentes, não apenas de uma flag.
+- **Gates humanos:** propostas críticas só são aplicadas após aprovação explícita.
+- **Instalação não destrutiva:** arquivos existentes e customizações locais são preservados.
+- **Agentes especializados:** cada etapa possui entradas, saídas e áreas de escrita definidas.
+- **Portabilidade:** o mesmo projeto pode usar Claude Code, Codex, Pi Agent e Ollama.
+- **Engenharia reversa com curadoria:** documentação legada vira insumo rastreável, nunca requisito automático.
 
 ## Requisitos
 
 - Node.js 20 ou superior;
-- Claude Code, Codex ou Pi Agent para executar as skills;
-- Ollama opcional para o provider local e o runtime direto.
+- Claude Code, Codex ou Pi Agent para executar as skills; ou
+- Ollama opcional para o runtime local direto.
 
-## Instalação pelo npm
+O Factory Agent não instala engines, Ollama ou modelos automaticamente.
 
-Execute sem instalar globalmente:
+## Instalação
+
+Sem instalação global:
 
 ```bash
 npx @sidnei_ali/factory-agent --help
 npx @sidnei_ali/factory-agent install --engines=pi-agent --project=MeuProjeto
 ```
 
-Ou instale o comando `factory` globalmente:
+Como comando global:
 
 ```bash
 npm install --global @sidnei_ali/factory-agent
 factory --version
 ```
 
-## Uso local
+Para desenvolver a partir do repositório:
 
 ```bash
+git clone https://github.com/sidneiali/factory-agent.git
+cd factory-agent
+npm test
 node bin/factory.js --help
-node bin/factory.js install --root=/caminho/do/projeto --engines=claude-code,codex,pi-agent --project=MeuProjeto
-node bin/factory.js provider models ollama --root=/caminho/do/projeto
-node bin/factory.js status --root=/caminho/do/projeto
-node bin/factory.js doctor --root=/caminho/do/projeto
 ```
 
-Como pacote instalado:
+## Início rápido
+
+### Com Claude Code, Codex ou Pi Agent
+
+Instale os adaptadores e as skills no projeto alvo:
+
+```bash
+factory install \
+  --root=/caminho/do/projeto \
+  --engines=claude-code,codex,pi-agent \
+  --project=MeuProjeto
+```
+
+Inicie o workflow pela engine escolhida:
+
+| Engine | Comando inicial |
+|---|---|
+| Claude Code | `/factory-new` |
+| Codex | `factory-new` |
+| Pi Agent | `/factory-new` |
+
+Depois, acompanhe o estado físico:
+
+```bash
+factory status --root=/caminho/do/projeto
+factory doctor --root=/caminho/do/projeto
+```
+
+### Com Ollama local
+
+Com o servidor Ollama já instalado e iniciado:
 
 ```bash
 factory install --engines=pi-agent --project=MeuProjeto
-factory provider select ollama --model=nome-do-modelo
+factory provider models ollama
+factory provider select ollama --model=nome-do-modelo --timeout=120000
 factory provider test ollama
-factory new "ideia da aplicação"
+factory new "Criar uma aplicação para controlar tarefas"
 factory run
 factory approve
 factory resume
 ```
 
-Após instalar, execute `/factory-new` no Claude Code ou Pi Agent, ou `factory-new` no Codex. No runtime direto, use `factory new`, `factory run` e os gates `factory approve`/`factory reject`.
+`factory run` cria uma proposta. `factory approve` aplica somente artefatos novos; `factory reject <motivo>` rejeita a proposta sem aplicá-la.
 
-## Fluxo
+## Workflow principal
 
 ```text
 discovery
@@ -64,70 +111,120 @@ discovery
   → documentation
 ```
 
-Manutenção:
+Fluxos de manutenção:
 
 - `factory-support`: intake e classificação;
-- `factory-bug`: triagem sem correção;
-- `factory-bug-fix`: reprodução, causa raiz, gates e prova vermelho → verde.
+- `factory-bug`: triagem e reprodução, sem correção;
+- `factory-bug-fix`: causa raiz, plano aprovado e prova vermelho → verde.
 
-## Comandos
+## Engines e runtime
 
-| Comando | Função |
-|---|---|
-| `factory install` | Instala estado, políticas, entradas e skills |
-| `factory status` | Detecta estágio físico e próximo agente |
-| `factory doctor` | Verifica estado, manifesto, engines e arquivos |
-| `factory update` | Atualiza arquivos intactos e preserva customizações |
-| `factory add-agent <id>` | Adiciona ou restaura um agente |
-| `factory add-engine <id>` | Adiciona Claude Code, Codex ou Pi Agent |
-| `factory provider ...` | Lista, seleciona e testa providers/modelos |
-| `factory new "ideia"` | Inicia um workflow direto |
-| `factory run [agente]` | Executa o próximo agente pelo provider ativo |
-| `factory resume` | Retoma pelo estado físico |
-| `factory approve` | Aprova e aplica artefatos novos da proposta |
-| `factory reject <motivo>` | Rejeita a proposta pendente |
-| `factory import reversa --source=<legado>` | Importa snapshot de uma extracao Reversa |
-| `factory new --from-reversa` | Inicia a reconstrucao pelo snapshot ativo |
-| `factory uninstall` | Remove somente arquivos intactos criados pela ferramenta |
+| Integração | Como funciona | Entrada principal |
+|---|---|---|
+| Claude Code | Skills e comandos Markdown instalados no projeto | `/factory-new` |
+| Codex | Skills universais e comandos compatíveis | `factory-new` |
+| Pi Agent | Skills universais, extensão local, ferramentas e TUI | `/factory-new` |
+| Ollama | Provider local usado pelo runtime direto e pelo Pi | `factory run` |
 
-## Artefatos no projeto alvo
+A instalação do Pi cria `.pi/extensions/factory-agent/` e usa exclusivamente as skills universais em `.agents/skills/`, evitando cópias concorrentes. A extensão registra comandos `/factory-*`, ferramentas de estado e decisão, e modelos de chat Ollama disponíveis no ambiente.
 
-```text
-.factory/             estado, providers, propostas, políticas, eventos e manifesto
-.pi/extensions/       extensão local do Pi Agent
-.agents/skills/        skills universais, também descobertas pelo Pi Agent
-_factory_product/     brief, requisitos, arquitetura e ADRs
-_factory_delivery/    planos, ações, revisão, QA, aceite e documentação
-_factory_operations/  suporte e bugs
+O endpoint padrão do Ollama é `http://127.0.0.1:11434`. Para alterá-lo:
+
+```bash
+factory provider select ollama \
+  --base-url=http://127.0.0.1:11434 \
+  --model=meu-modelo \
+  --timeout=120000
 ```
 
 ## Reversa Bridge
 
-Depois que o Reversa produzir a documentacao de engenharia reversa, importe-a em uma raiz separada para construir o sistema novo:
+O Reversa Bridge transforma uma saída de engenharia reversa em insumo controlado para um sistema novo. O Reversa permanece externo: o Factory Agent não o instala, não o executa e nunca modifica o legado.
 
 ```bash
 factory install --root=/novo-sistema --engines=pi-agent --project=NovoSistema
 factory import reversa --source=/sistema-legado --root=/novo-sistema
 factory new --from-reversa --root=/novo-sistema
+factory status --root=/novo-sistema
 ```
 
-O Factory cria um snapshot com SHA-256, preserva confianca e gaps e exige curadoria `PRESERVE`, `MODERNIZE`, `DISCARD`, `HUMAN_DECISION` ou `GAP`. A origem nunca e modificada. Consulte [`docs/reversa-bridge.md`](docs/reversa-bridge.md).
+Durante a importação, o Factory Agent:
 
-## Segurança
+1. valida os artefatos obrigatórios do Reversa;
+2. cria um snapshot imutável com hashes SHA-256;
+3. preserva evidências, confiança, gaps e identificadores `REV-*`;
+4. mantém origem legada e sistema-alvo em árvores separadas;
+5. exige uma decisão para cada regra importada:
+   - `PRESERVE`;
+   - `MODERNIZE`;
+   - `DISCARD`;
+   - `HUMAN_DECISION`;
+   - `GAP`;
+6. mantém rastreabilidade até requisito-alvo, ADR, ação, código, teste e evidência de paridade.
+
+Detalhes em [Reversa Bridge](docs/reversa-bridge.md).
+
+## Comandos principais
+
+| Comando | Função |
+|---|---|
+| `factory install` | Instala estado, políticas, adaptadores e skills |
+| `factory status` | Detecta o estágio físico e o próximo agente |
+| `factory doctor` | Verifica estado, manifesto, engines e arquivos |
+| `factory update` | Atualiza intactos, restaura ausentes e preserva customizações |
+| `factory add-agent <id>` | Adiciona ou restaura uma skill conhecida |
+| `factory add-engine <id>` | Adiciona Claude Code, Codex ou Pi Agent |
+| `factory provider ...` | Lista, seleciona e testa providers e modelos |
+| `factory new "ideia"` | Inicia um workflow direto |
+| `factory run [agente]` | Executa o próximo agente pelo provider ativo |
+| `factory approve` | Aprova e aplica artefatos novos da proposta |
+| `factory reject <motivo>` | Rejeita a proposta pendente |
+| `factory resume` | Reconcilia runtime e artefatos físicos |
+| `factory import reversa --source=<legado>` | Importa um snapshot Reversa |
+| `factory new --from-reversa` | Inicia reconstrução pelo snapshot ativo |
+| `factory uninstall` | Remove somente arquivos intactos criados pela ferramenta |
+
+Consulte a [referência completa da CLI](docs/cli.md).
+
+## Estrutura instalada no projeto
+
+```text
+.factory/              estado, providers, propostas, políticas, eventos e manifesto
+.pi/extensions/        extensão local do Pi Agent
+.agents/skills/        skills universais compartilhadas pelas engines
+_factory_product/      brief, requisitos, arquitetura, ADRs e imports Reversa
+_factory_delivery/     planos, ações, revisão, QA, aceite e documentação
+_factory_operations/   suporte, bugs e evidências operacionais
+```
+
+## Segurança e limites
 
 - instalação não sobrescreve arquivos de entrada existentes;
 - atualizações usam SHA-256 e preservam customizações;
 - desinstalação preserva arquivos modificados;
-- exclusão, push, deploy, publicação, dependências e migrações exigem aprovação;
-- no Pi Agent, a extensão intercepta `bash`, `write` e `edit`, bloqueando caminhos sensíveis e solicitando confirmação para operações de risco;
-- o runtime Ollama só aplica propostas após `factory approve` e não sobrescreve arquivos existentes;
-- a extensão e a CLI não constituem um sandbox do sistema operacional.
+- exclusão, deploy, publicação, dependências e migrações exigem aprovação;
+- legado e snapshots importados são tratados como somente leitura;
+- o runtime direto não sobrescreve arquivos existentes;
+- a extensão Pi intercepta ferramentas conhecidas, mas não constitui um sandbox do sistema operacional;
+- nenhuma migração real, operação destrutiva ou instalação de modelo é executada automaticamente.
+
+Leia a [política de segurança](docs/security.md) antes de usar o projeto em ambientes sensíveis.
 
 ## Documentação
 
-A documentação completa começa em [`docs/index.md`](docs/index.md) e pode ser navegada pela configuração [`mkdocs.yml`](mkdocs.yml). Ela cobre instalação, uso, CLI, configuração, engines, providers, workflow, agentes, segurança, troubleshooting, arquitetura e contribuição.
+- [Visão geral](docs/index.md)
+- [Instalação](docs/installation.md)
+- [Guia de uso](docs/usage.md)
+- [Referência da CLI](docs/cli.md)
+- [Configuração](docs/configuration.md)
+- [Engines e providers](docs/engines.md)
+- [Workflow](docs/workflow.md)
+- [Agentes](docs/agents.md)
+- [Reversa Bridge](docs/reversa-bridge.md)
+- [Segurança](docs/security.md)
+- [Solução de problemas](docs/troubleshooting.md)
 
-Se MkDocs estiver disponível no ambiente:
+Se MkDocs estiver disponível:
 
 ```bash
 mkdocs serve
@@ -138,26 +235,15 @@ mkdocs serve
 ```bash
 npm test
 npm run check
+npm pack --dry-run
 ```
 
-Os contratos internos permanecem em `docs/product/`.
-
-## Pi Agent e Ollama
-
-A instalação `--engines=pi-agent` cria `.pi/extensions/factory-agent/` e usa as skills universais em `.agents/skills/`, que o Pi Agent descobre nativamente. Este repositório também contém um wrapper local em `.pi/extensions/factory-agent/index.ts`, permitindo usar e desenvolver a extensão no próprio projeto. Depois de confiar no projeto, use `/reload` no Pi se a extensão ainda não estiver carregada.
-
-A extensão registra os comandos `/factory-*`, as ferramentas `factory_status`, `factory_record_decision`, `factory_import_reversa` e `factory_start_from_reversa`, mostra o estágio na TUI e disponibiliza modelos de chat do Ollama como provider `factory-ollama`. Modelos exclusivamente de embedding não são registrados como chat.
-
-O endpoint padrão é `http://127.0.0.1:11434` e pode ser alterado com:
-
-```bash
-factory provider select ollama --base-url=http://127.0.0.1:11434 --model=meu-modelo
-```
+Os contratos de produto e arquitetura ficam em [`docs/product/`](docs/product/).
 
 ## Origem conceitual
 
-O projeto foi inspirado por padrões observados no [sandeco/reversa](https://github.com/sandeco/reversa), especialmente skills portáveis, artefatos operacionais, retomada por estado físico e gates humanos. A implementação do Factory Agent é independente e focada em criação de aplicações.
+O projeto foi inspirado por padrões observados no [sandeco/reversa](https://github.com/sandeco/reversa), especialmente skills portáveis, artefatos operacionais, retomada por estado físico e gates humanos. A implementação do Factory Agent é independente e voltada à criação e reconstrução segura de aplicações.
 
 ## Licença
 
-MIT. Consulte `LICENSE`.
+MIT. Consulte [LICENSE](LICENSE).
