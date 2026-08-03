@@ -153,7 +153,10 @@ Aprovado pelo usuário em 2026-08-03.
 - [x] Validar CLI, Pi Agent, empacotamento e integração em pastas temporárias.
 - [x] Atualizar documentação e versão para `0.3.0`.
 - [x] Criar registro da alteração, revisar Git e efetuar commit.
-- [ ] Enviar para `origin/main` e publicar quando a autenticação npm permitir.
+- [x] Enviar para `origin/main`.
+- [ ] Publicar `@sidnei_ali/factory-agent@0.3.0`.
+
+Impedimento: `npm publish --access public` retornou `E404`, indicando que a sessão atual não possui autenticação ou permissão para publicar no escopo `@sidnei_ali`.
 
 ## Checkpoint de contexto — 2026-08-03 19:32
 
@@ -178,6 +181,4 @@ Arquivos centrais envolvidos:
 - `test/reversa-integration.test.js`
 - `docs/reversa-bridge.md`
 
-Próximo passo seguro: marcar as validações e documentação já concluídas, criar o registro obrigatório da versão `0.3.0`, revisar todo o diff, executar validação final, efetuar commit e push. A publicação npm permanece condicionada à autenticação do escopo.
-
-
+Próximo passo seguro: autenticar no npm com uma conta ou token autorizado para o escopo `@sidnei_ali` e repetir somente `npm publish --access public`; código, commit e push já foram concluídos.
