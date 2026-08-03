@@ -29,6 +29,9 @@ Cada `SKILL.md` deve conter front matter com `name`, `description`, `license`, `
 - Quando executado pelo Pi Agent, usar apenas ferramentas ativas e respeitar respostas de bloqueio da extensão.
 - Respostas destinadas ao runtime direto devem usar o envelope estruturado de ações, sem comandos embutidos em texto livre.
 - O provider selecionado não altera responsabilidades, gates nem áreas de escrita do agente.
+- Agentes do Reversa Bridge leem somente snapshots validados, nunca a origem legada diretamente após a importação.
+- Toda afirmação importada preserva a confiança `CONFIRMED`, `INFERRED` ou `GAP` quando disponível.
+- Nenhuma regra legada vira requisito-alvo sem decisão de curadoria registrada e rastreável.
 
 ## Handoff padrão
 

@@ -11,6 +11,7 @@ A CLI cuida de instalação, estado, integridade e retomada. A inteligência esp
 - **Instalação não destrutiva:** arquivos existentes e customizações são preservados.
 - **Responsabilidade limitada:** cada agente possui entradas, saídas e áreas de escrita definidas.
 - **Operação local:** nenhuma chave comercial é solicitada; Ollama é opcional e não é instalado automaticamente.
+- **Reconstrucao rastreavel:** snapshots Reversa passam por curadoria antes de orientar um sistema novo.
 
 ## Começo rápido
 
@@ -36,6 +37,7 @@ Com uma engine hospedeira, inicie pelo comando correspondente:
 - [Referência da CLI](cli.md)
 - [Configuração](configuration.md)
 - [Workflow](workflow.md)
+- [Reversa Bridge](reversa-bridge.md)
 - [Segurança](security.md)
 - [Solução de problemas](troubleshooting.md)
 

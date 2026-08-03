@@ -13,6 +13,7 @@ export interface FactoryState {
 		approvals: Array<Record<string, unknown>>;
 		startedAt?: string;
 		updatedAt?: string;
+		mode?: string;
 	};
 	[key: string]: unknown;
 }
@@ -70,9 +71,21 @@ export function getFactoryStatus(cwd: string): PhysicalStatus {
 		return { installed: true, stage: "awaiting-approval", nextAgent: state.runtime.currentAgent, reason: "há gate pendente", pendingGate: state.runtime.pendingGate };
 	}
 	const product = join(cwd, state.folders.product);
-	if (!existsSync(join(product, "brief.md"))) return { installed: true, stage: "intake", nextAgent: "factory-discovery", reason: "brief.md ausente" };
-	if (!existsSync(join(product, "requirements.md"))) return { installed: true, stage: "requirements", nextAgent: "factory-requirements", reason: "requirements.md ausente" };
-	if (!existsSync(join(product, "architecture.md"))) return { installed: true, stage: "architecture", nextAgent: "factory-architect", reason: "architecture.md ausente" };
+	const reversaRebuild = state.runtime?.mode === "reversa-rebuild";
+	if (reversaRebuild) {
+		for (const [artifact, agent, stage] of [
+			["rebuild/curation-decisions.md", "factory-reversa-curator", "curation"],
+			["requirements.md", "factory-reversa-target-requirements", "target-requirements"],
+			["architecture.md", "factory-reversa-target-architect", "target-architecture"],
+			["rebuild/data-migration.md", "factory-reversa-data", "data-migration"],
+		] as const) {
+			if (!existsSync(join(product, artifact))) return { installed: true, stage, nextAgent: agent, reason: `${artifact} ausente` };
+		}
+	} else {
+		if (!existsSync(join(product, "brief.md"))) return { installed: true, stage: "intake", nextAgent: "factory-discovery", reason: "brief.md ausente" };
+		if (!existsSync(join(product, "requirements.md"))) return { installed: true, stage: "requirements", nextAgent: "factory-requirements", reason: "requirements.md ausente" };
+		if (!existsSync(join(product, "architecture.md"))) return { installed: true, stage: "architecture", nextAgent: "factory-architect", reason: "architecture.md ausente" };
+	}
 	if (!state.activeWork) return { installed: true, stage: "planning", nextAgent: "factory-plan", reason: "entrega ativa ausente" };
 	const work = join(cwd, state.folders.delivery, state.activeWork);
 	const actions = join(work, "actions.md");
@@ -81,6 +94,11 @@ export function getFactoryStatus(cwd: string): PhysicalStatus {
 	if (!existsSync(join(work, "review.md"))) return { installed: true, stage: "review", nextAgent: "factory-reviewer", reason: "review ausente" };
 	if (!existsSync(join(work, "qa-report.md"))) return { installed: true, stage: "qa", nextAgent: "factory-qa", reason: "QA ausente" };
 	if (!approved(join(work, "qa-report.md"))) return { installed: true, stage: "qa-blocked", nextAgent: "factory-developer", reason: "QA reprovado" };
+	if (reversaRebuild) {
+		if (!existsSync(join(work, "parity-report.md"))) return { installed: true, stage: "parity", nextAgent: "factory-reversa-parity", reason: "parity-report.md ausente" };
+		if (!approved(join(work, "parity-report.md"))) return { installed: true, stage: "parity-blocked", nextAgent: "factory-developer", reason: "paridade reprovada" };
+		if (!existsSync(join(work, "cutover-plan.md"))) return { installed: true, stage: "cutover", nextAgent: "factory-reversa-cutover", reason: "cutover-plan.md ausente" };
+	}
 	if (!approved(join(work, "acceptance.md"))) return { installed: true, stage: "acceptance", nextAgent: "factory-acceptance", reason: "aceite ausente ou reprovado" };
 	if (!existsSync(join(work, "documentation.md"))) return { installed: true, stage: "documentation", nextAgent: "factory-documentation", reason: "documentação ausente" };
 	return { installed: true, stage: "done", nextAgent: null, reason: "fluxo concluído" };

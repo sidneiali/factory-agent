@@ -22,6 +22,14 @@
     "agents": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
     "createdFiles": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
     "activeWork": { "type": ["string", "null"] },
+    "imports": {
+      "type": "object",
+      "required": ["active", "records"],
+      "properties": {
+        "active": { "type": ["string", "null"] },
+        "records": { "type": "array" }
+      }
+    },
     "runtime": {
       "type": ["object", "null"],
       "properties": {

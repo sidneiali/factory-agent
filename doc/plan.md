@@ -121,6 +121,63 @@ Aprovado pelo usuário em 2026-08-02.
 - [x] Atualizar versão e documentação.
 - [x] Executar testes, aplicação, empacotamento e validação temporária.
 - [x] Criar registro da correção, revisar Git e efetuar commit.
-- [ ] Enviar a correção para `origin/main`.
+- [x] Enviar a correção para `origin/main`.
 - [ ] Publicar e validar `@sidnei_ali/factory-agent@0.2.1`.
+
+Impedimento: o registry recusou `npm publish` com `E404`, indicando ausência de permissão ou autenticação para o escopo `@sidnei_ali` nesta sessão.
+
+---
+
+# Plano aprovado — Reversa Bridge 0.3.0
+
+Aprovado pelo usuário em 2026-08-03.
+
+## Premissas
+
+- O Reversa permanece uma ferramenta externa e não será instalado nem executado automaticamente.
+- A importação lê o legado e os artefatos Reversa sem modificá-los.
+- O sistema-alvo deve ficar em uma raiz separada ou receber apenas um snapshot imutável da origem.
+- Toda regra importada exige decisão `PRESERVE`, `MODERNIZE`, `DISCARD`, `HUMAN_DECISION` ou `GAP`.
+- Pi Agent e runtime Ollama compartilharão o mesmo adapter e os mesmos artefatos.
+
+## Etapas
+
+- [x] Atualizar requisitos, arquitetura e contratos do Reversa Bridge.
+- [x] Implementar detector, validador e snapshot SHA-256 dos artefatos Reversa.
+- [x] Implementar comandos `factory import reversa` e `factory new --from-reversa`.
+- [x] Criar agentes de importação, curadoria, requisitos-alvo, dados, paridade e cutover.
+- [x] Integrar comandos e ferramentas do Reversa Bridge à extensão Pi.
+- [x] Integrar o snapshot ao contexto do runtime Ollama.
+- [x] Implementar rastreabilidade `REV-SPEC → decisão → requisito → código → teste`.
+- [x] Adicionar fixtures e testes automatizados do fluxo completo.
+- [x] Validar CLI, Pi Agent, empacotamento e integração em pastas temporárias.
+- [x] Atualizar documentação e versão para `0.3.0`.
+- [x] Criar registro da alteração, revisar Git e efetuar commit.
+- [ ] Enviar para `origin/main` e publicar quando a autenticação npm permitir.
+
+## Checkpoint de contexto — 2026-08-03 19:32
+
+Estado atual:
+
+- Reversa Bridge implementado em `lib/integrations/`, CLI, workflow, 8 skills e extensão Pi.
+- Documentação e versão `0.3.0` atualizadas.
+- 28 testes automatizados aprovados; 22 skills validadas.
+- Fluxo temporário `install → import reversa → new --from-reversa → status → doctor` aprovado.
+- Extensão carregada pelo Pi Agent e pacote de 68 arquivos validado.
+- Ollama local respondeu à descoberta com 6 modelos; duas execuções reais de chat expiraram por timeout. O runtime com resposta Ollama simulada foi aprovado.
+
+Arquivos centrais envolvidos:
+
+- `lib/integrations/reversa-detection.js`
+- `lib/integrations/reversa-snapshot.js`
+- `lib/integrations/reversa.js`
+- `lib/commands/import.js`
+- `lib/workflow.js`
+- `templates/pi-extension/factory-agent/`
+- `agents/factory-reversa-*/`
+- `test/reversa-integration.test.js`
+- `docs/reversa-bridge.md`
+
+Próximo passo seguro: marcar as validações e documentação já concluídas, criar o registro obrigatório da versão `0.3.0`, revisar todo o diff, executar validação final, efetuar commit e push. A publicação npm permanece condicionada à autenticação do escopo.
+
 

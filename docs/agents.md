@@ -26,6 +26,19 @@ Cada agente é uma skill Markdown com missão, entradas, saídas, áreas de escr
 | `factory-bug` | Registra sintomas, impacto, evidências e hipótese sem corrigir. |
 | `factory-bug-fix` | Reproduz, identifica causa raiz, corrige e prova vermelho para verde. |
 
+## Reversa Bridge
+
+| Agente | Responsabilidade principal |
+|---|---|
+| `factory-reversa-importer` | Valida a extracao e explica o snapshot. |
+| `factory-reversa-curator` | Classifica regras antes de virarem requisitos. |
+| `factory-reversa-target-requirements` | Produz requisitos-alvo rastreados a REV-IDs. |
+| `factory-reversa-target-architect` | Desenha a arquitetura moderna. |
+| `factory-reversa-data` | Planeja migracao e reconciliacao de dados. |
+| `factory-reversa-parity` | Comprova equivalencia dos itens preservados. |
+| `factory-reversa-cutover` | Planeja transicao, rollback e observacao. |
+| `factory-reversa-traceability` | Audita a cadeia ate codigo e teste. |
+
 ## Contrato comum
 
 Todo agente deve:

@@ -29,6 +29,12 @@ Coordenar agentes especializados para transformar uma ideia em software validado
 - **RF-016:** iniciar, executar, retomar, aprovar e rejeitar etapas pela CLI.
 - **RF-017:** aplicar políticas de arquivos e comandos antes da execução de ferramentas no Pi Agent.
 - **RF-018:** usar o modelo ativo do Pi Agent sem acoplamento a um provider específico.
+- **RF-019:** detectar uma extração Reversa pela configuração e pelos artefatos físicos.
+- **RF-020:** importar os artefatos Reversa em snapshot imutável com hashes SHA-256.
+- **RF-021:** validar artefatos mínimos, confiança, gaps e specs antes da reconstrução.
+- **RF-022:** exigir curadoria `PRESERVE`, `MODERNIZE`, `DISCARD`, `HUMAN_DECISION` ou `GAP`.
+- **RF-023:** iniciar o sistema-alvo com rastreabilidade da spec legada até requisito, código e teste.
+- **RF-024:** disponibilizar a importação pela CLI, Pi Agent e runtime Ollama.
 
 ## Requisitos não funcionais
 
@@ -39,6 +45,8 @@ Coordenar agentes especializados para transformar uma ideia em software validado
 - **RNF-005 — Extensibilidade:** novos agentes e engines podem ser adicionados sem alterar o orquestrador central.
 - **RNF-006 — Testabilidade:** operações de filesystem recebem raiz explícita e são testáveis em pasta temporária.
 - **RNF-007 — Menor privilégio:** cada agente declara áreas permitidas de escrita.
+- **RNF-008 — Imutabilidade:** o importador nunca modifica o legado nem a saída original do Reversa.
+- **RNF-009 — Reprodutibilidade:** o snapshot registra origem, timestamp, versão detectada e hash de cada arquivo.
 
 ## Fora do escopo inicial
 
@@ -47,7 +55,7 @@ Coordenar agentes especializados para transformar uma ideia em software validado
 - APIs comerciais de LLM gerenciadas diretamente pelo Factory Agent.
 - Deploy automático.
 - Marketplace de agentes.
-- Engenharia reversa e migração de legado.
+- Execução da engenharia reversa; essa responsabilidade permanece no Reversa externo.
 
 ## Critérios de aceite
 
@@ -62,3 +70,6 @@ Coordenar agentes especializados para transformar uma ideia em software validado
 9. A extensão do Pi registra comandos e ferramentas e bloqueia operações incompatíveis com as políticas.
 10. O provider Ollama lista modelos, testa conectividade e executa chat sem instalar ou baixar modelos.
 11. Os comandos de workflow persistem gates e retomam o próximo agente correto.
+12. `factory import reversa` valida e importa uma extração sem alterar a origem.
+13. `factory new --from-reversa` inicia o pipeline de reconstrução a partir do snapshot.
+14. A matriz de rastreabilidade relaciona origem Reversa, decisão de curadoria, requisito-alvo, ação, código e teste.

@@ -35,10 +35,26 @@ test('instala extensão do Pi e usa somente as skills universais', async (t) => 
   assert.match(index, /registerTool\(/);
   assert.match(index, /pi\.on\("tool_call"/);
   assert.match(index, /Factory Decision Gate/);
+  assert.match(index, /registerCommand\("factory-import-reversa"/);
+  assert.match(index, /name: "factory_import_reversa"/);
+  assert.match(index, /name: "factory_start_from_reversa"/);
   assert.match(policy, /Factory Policy Gate|evaluateToolCall/);
   assert.match(await readFile(join(root, '.agents/skills/factory-new/SKILL.md'), 'utf8'), /name: factory-new/);
   await assert.rejects(() => readFile(join(root, '.pi/skills/factory-new/SKILL.md'), 'utf8'), /ENOENT/);
   assert.deepEqual((await loadState(root)).engines, ['pi-agent']);
+});
+
+test('update instala agentes adicionados em versao nova', async (t) => {
+  const root = await fixture(t);
+  const state = await loadState(root);
+  state.agents = state.agents.filter((agent) => agent !== 'factory-reversa-importer');
+  await saveState(root, state);
+  await rm(join(root, '.agents/skills/factory-reversa-importer'), { recursive: true, force: true });
+
+  await update({ root, _: [] }, { cwd: root, packageRoot, version: '0.3.0', io: silent });
+
+  assert.match(await readFile(join(root, '.agents/skills/factory-reversa-importer/SKILL.md'), 'utf8'), /name: factory-reversa-importer/);
+  assert.ok((await loadState(root)).agents.includes('factory-reversa-importer'));
 });
 
 test('update remove espelho legado intacto e preserva customização fora do manifesto', async (t) => {

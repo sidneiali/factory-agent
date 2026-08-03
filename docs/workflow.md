@@ -16,6 +16,20 @@ factory-discovery
   -> factory-documentation
 ```
 
+## Fluxo de reconstrucao Reversa
+
+```text
+factory-reversa-curator
+  -> factory-reversa-target-requirements
+  -> factory-reversa-target-architect
+  -> factory-reversa-data
+  -> factory-plan -> developer -> reviewer -> qa
+  -> factory-reversa-parity -> factory-reversa-cutover
+  -> acceptance -> documentation
+```
+
+O fluxo comeca somente depois de `factory import reversa` e `factory new --from-reversa`. Consulte [Reversa Bridge](reversa-bridge.md).
+
 ## Estágios físicos
 
 | Evidência atual | Próximo agente |

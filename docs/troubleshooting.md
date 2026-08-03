@@ -39,6 +39,16 @@ factory provider models ollama
 
 Verifique se o serviço está ativo, se `baseUrl` está correto e se firewall ou proxy bloqueiam o endpoint. O Factory Agent não inicia o serviço automaticamente.
 
+## Ollama expira durante a geracao
+
+A descoberta de modelos pode funcionar mesmo quando uma geracao longa excede o limite. Aumente o timeout e selecione explicitamente um modelo de chat:
+
+```bash
+factory provider select ollama --model=meu-modelo --timeout=300000
+```
+
+Modelos locais podem precisar de tempo adicional no primeiro carregamento. Se continuar expirando, valide recursos disponiveis e tente um modelo menor.
+
 ## Nenhum modelo listado
 
 Confirme que existe um modelo de chat instalado. Modelos exclusivamente de embedding são filtrados da integração com o Pi.

@@ -16,6 +16,7 @@ nav:
       - Providers: providers.md
   - Guias:
       - Workflow: workflow.md
+      - Reversa Bridge: reversa-bridge.md
       - Agentes: agents.md
       - Segurança: security.md
       - Solução de problemas: troubleshooting.md

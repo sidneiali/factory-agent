@@ -158,6 +158,29 @@ export default async function factoryAgentExtension(pi: ExtensionAPI) {
 		},
 	});
 
+	pi.registerCommand("factory-import-reversa", {
+		description: "Importa uma extracao Reversa: /factory-import-reversa <caminho-legado>",
+		handler: async (args, ctx) => {
+			const source = args.trim();
+			if (!source) return ctx.ui.notify("Informe o caminho do sistema legado.", "warning");
+			const confirmed = await ctx.ui.confirm("Reversa Bridge", `Importar snapshot somente leitura de ${source}?`);
+			if (!confirmed) return;
+			const result = await pi.exec("factory", ["import", "reversa", `--source=${source}`, `--root=${ctx.cwd}`], { cwd: ctx.cwd });
+			ctx.ui.notify(result.code === 0 ? result.stdout.trim() : result.stderr.trim() || "Falha na importacao Reversa.", result.code === 0 ? "info" : "error");
+			renderStatus(ctx);
+		},
+	});
+
+	pi.registerCommand("factory-new-from-reversa", {
+		description: "Inicia a reconstrucao usando o snapshot Reversa ativo",
+		handler: async (_args, ctx) => {
+			const result = await pi.exec("factory", ["new", "--from-reversa", `--root=${ctx.cwd}`], { cwd: ctx.cwd });
+			if (result.code !== 0) return ctx.ui.notify(result.stderr.trim() || "Falha ao iniciar reconstrucao.", "error");
+			renderStatus(ctx);
+			sendAgent(pi, ctx, "factory-reversa-curator");
+		},
+	});
+
 	pi.registerCommand("factory-doctor", {
 		description: "Verifica a instalação local do Factory Agent",
 		handler: async (_args, ctx) => {
@@ -179,6 +202,32 @@ export default async function factoryAgentExtension(pi: ExtensionAPI) {
 		async execute(_id, _params, _signal, _update, ctx) {
 			const status = getFactoryStatus(ctx.cwd);
 			return { content: [{ type: "text", text: JSON.stringify(status, null, 2) }], details: status };
+		},
+	});
+
+	pi.registerTool({
+		name: "factory_import_reversa",
+		label: "Factory Reversa Import",
+		description: "Importa uma extracao Reversa ja gerada. Nunca executa o Reversa nem modifica o legado.",
+		parameters: Type.Object({ source: Type.String({ description: "Caminho absoluto ou relativo da raiz legada" }) }),
+		async execute(_id, params, _signal, _update, ctx) {
+			const confirmed = await ctx.ui.confirm("Reversa Bridge", `Importar snapshot somente leitura de ${params.source}?`);
+			if (!confirmed) return { content: [{ type: "text", text: "Importacao cancelada pelo usuario." }], details: { imported: false }, isError: true };
+			const result = await pi.exec("factory", ["import", "reversa", `--source=${params.source}`, `--root=${ctx.cwd}`], { cwd: ctx.cwd });
+			return { content: [{ type: "text", text: result.stdout.trim() || result.stderr.trim() }], details: { imported: result.code === 0, exitCode: result.code }, isError: result.code !== 0 };
+		},
+	});
+
+	pi.registerTool({
+		name: "factory_start_from_reversa",
+		label: "Factory Reversa Start",
+		description: "Inicia reconstrucao a partir do snapshot Reversa ativo apos confirmacao humana.",
+		parameters: Type.Object({}),
+		async execute(_id, _params, _signal, _update, ctx) {
+			const confirmed = await ctx.ui.confirm("Reversa Bridge", "Iniciar o workflow de reconstrucao?");
+			if (!confirmed) return { content: [{ type: "text", text: "Inicio cancelado pelo usuario." }], details: { started: false }, isError: true };
+			const result = await pi.exec("factory", ["new", "--from-reversa", `--root=${ctx.cwd}`], { cwd: ctx.cwd });
+			return { content: [{ type: "text", text: result.stdout.trim() || result.stderr.trim() }], details: { started: result.code === 0, exitCode: result.code }, isError: result.code !== 0 };
 		},
 	});
 

@@ -27,6 +27,7 @@ Opções usam o formato `--chave=valor`. Argumentos sem `--` são posicionais.
 | `update` | `factory update` | Atualiza intactos, restaura ausentes e preserva modificados. |
 | `add-agent` | `factory add-agent factory-qa` | Instala ou restaura uma skill conhecida. |
 | `add-engine` | `factory add-engine pi-agent` | Adiciona uma engine suportada. |
+| `import` | `factory import reversa --source=/legado` | Valida e cria snapshot imutavel de uma extracao Reversa. |
 | `uninstall` | `factory uninstall` | Remove apenas arquivos intactos registrados no manifesto. |
 
 ## Provider
@@ -45,6 +46,7 @@ No comando `select`, `--base-url`, `--model` e `--timeout` são opcionais. Atual
 | Comando | Uso | Descrição |
 |---|---|---|
 | `new` | `factory new "ideia" [--work=id] [--restart]` | Inicializa o workflow e a entrega ativa. |
+| `new --from-reversa` | `factory new --from-reversa [--work=id]` | Inicia reconstrucao pelo snapshot Reversa ativo. |
 | `run` | `factory run [factory-agente]` | Executa o próximo agente e cria uma proposta. |
 | `approve` | `factory approve` | Aplica somente artefatos novos da proposta pendente. |
 | `reject` | `factory reject <motivo>` | Rejeita a proposta sem aplicar artefatos. |

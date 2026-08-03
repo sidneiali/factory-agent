@@ -14,6 +14,7 @@ A instalação mantém arquivos determinísticos em `.factory/`. Caminhos e camp
 ├── created-files.json    inventário para desinstalação segura
 ├── events.jsonl          log append-only
 ├── intake.md             ideia fornecida ao workflow direto
+├── imports.json          importacoes externas e snapshot ativo
 └── proposals/            propostas aguardando decisão
 ```
 
@@ -50,6 +51,7 @@ Campos relevantes:
 | `agents` | Skills instaladas. |
 | `activeWork` | Entrega ativa. |
 | `runtime` | Agente atual, status, gate e aprovações. |
+| `imports` | Importacao ativa e historico de snapshots externos. |
 
 Não altere `createdFiles` ou o manifesto manualmente: eles sustentam update e uninstall seguros.
 

@@ -18,6 +18,7 @@ bin/factory.js
       ├── commands/provider.js
       ├── commands/new.js / run.js / resume.js
       ├── commands/approve.js / reject.js
+      ├── commands/import.js
       └── commands/uninstall.js
 
 lib/
@@ -28,6 +29,7 @@ lib/
 ├── workflow.js      estágio físico, gates e próximo agente
 ├── runtime.js       execução e retomada do workflow
 ├── providers/       contrato de modelos e cliente Ollama
+├── integrations/reversa.js  detector, validação e snapshot read-only
 └── filesystem.js    utilitários confinados à raiz do projeto
 ```
 
@@ -40,7 +42,8 @@ lib/
 ├── policies.json
 ├── events.jsonl
 ├── created-files.json
-└── manifest.json
+├── manifest.json
+└── imports.json
 
 .factory_product/
 .factory_delivery/
@@ -48,6 +51,7 @@ lib/
 .agents/skills/factory-*/
 .claude/skills/factory-*/  # quando Claude Code for selecionado
 .pi/extensions/factory-agent/  # extensão local do Pi Agent; wrapper no repositório fonte
+_factory_product/imports/reversa/<id>/  # snapshot e rastreabilidade do legado
 ```
 
 ## Estado do workflow
@@ -80,6 +84,8 @@ Quando `actions.md` tiver checkbox aberto, o próximo agente é desenvolvimento.
 - Engines hospedeiras são separadas de providers de modelos.
 - O Pi Agent usa seu modelo ativo; o runtime direto usa a interface `ModelProvider`.
 - Ollama é acessado somente por URL configurável, sem download automático de modelos.
+- Integrações externas usam adapters; o adapter Reversa não depende do código do Reversa.
+- O snapshot preserva caminhos relativos e hashes, enquanto o estado guarda apenas metadados da importação ativa.
 
 ## Segurança
 
@@ -90,6 +96,8 @@ Quando `actions.md` tiver checkbox aberto, o próximo agente é desenvolvimento.
 - Agentes não recebem autorização implícita para push, deploy, exclusões ou instalação de dependências.
 - A extensão Pi intercepta `bash`, `write` e `edit`, bloqueando ou solicitando confirmação conforme a política.
 - A extensão local só é carregada pelo Pi depois que o projeto é confiável.
+- A raiz legada e `_reversa_sdd/` são somente leitura; todas as decisões e transformações ficam no sistema-alvo.
+- Arquivos com path traversal, links simbólicos para fora da raiz e artefatos sensíveis são recusados.
 
 ## Limitações conscientes
 

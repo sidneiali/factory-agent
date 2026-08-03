@@ -86,6 +86,8 @@ Manutenção:
 | `factory resume` | Retoma pelo estado físico |
 | `factory approve` | Aprova e aplica artefatos novos da proposta |
 | `factory reject <motivo>` | Rejeita a proposta pendente |
+| `factory import reversa --source=<legado>` | Importa snapshot de uma extracao Reversa |
+| `factory new --from-reversa` | Inicia a reconstrucao pelo snapshot ativo |
 | `factory uninstall` | Remove somente arquivos intactos criados pela ferramenta |
 
 ## Artefatos no projeto alvo
@@ -98,6 +100,18 @@ _factory_product/     brief, requisitos, arquitetura e ADRs
 _factory_delivery/    planos, ações, revisão, QA, aceite e documentação
 _factory_operations/  suporte e bugs
 ```
+
+## Reversa Bridge
+
+Depois que o Reversa produzir a documentacao de engenharia reversa, importe-a em uma raiz separada para construir o sistema novo:
+
+```bash
+factory install --root=/novo-sistema --engines=pi-agent --project=NovoSistema
+factory import reversa --source=/sistema-legado --root=/novo-sistema
+factory new --from-reversa --root=/novo-sistema
+```
+
+O Factory cria um snapshot com SHA-256, preserva confianca e gaps e exige curadoria `PRESERVE`, `MODERNIZE`, `DISCARD`, `HUMAN_DECISION` ou `GAP`. A origem nunca e modificada. Consulte [`docs/reversa-bridge.md`](docs/reversa-bridge.md).
 
 ## Segurança
 
@@ -132,7 +146,7 @@ Os contratos internos permanecem em `docs/product/`.
 
 A instalação `--engines=pi-agent` cria `.pi/extensions/factory-agent/` e usa as skills universais em `.agents/skills/`, que o Pi Agent descobre nativamente. Este repositório também contém um wrapper local em `.pi/extensions/factory-agent/index.ts`, permitindo usar e desenvolver a extensão no próprio projeto. Depois de confiar no projeto, use `/reload` no Pi se a extensão ainda não estiver carregada.
 
-A extensão registra os comandos `/factory-*`, as ferramentas `factory_status` e `factory_record_decision`, mostra o estágio na TUI e disponibiliza modelos de chat do Ollama como provider `factory-ollama`. Modelos exclusivamente de embedding não são registrados como chat.
+A extensão registra os comandos `/factory-*`, as ferramentas `factory_status`, `factory_record_decision`, `factory_import_reversa` e `factory_start_from_reversa`, mostra o estágio na TUI e disponibiliza modelos de chat do Ollama como provider `factory-ollama`. Modelos exclusivamente de embedding não são registrados como chat.
 
 O endpoint padrão é `http://127.0.0.1:11434` e pode ser alterado com:
 
