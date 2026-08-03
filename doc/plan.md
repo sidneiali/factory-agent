@@ -203,5 +203,5 @@ Aprovado pelo usuário em 2026-08-03.
 - [x] Criar o registro obrigatório da alteração documental.
 - [x] Validar testes, CLI, links internos, pacote e comandos documentados.
 - [x] Revisar `git status`, `git diff` e conteúdo preparado para commit.
-- [ ] Criar commit e enviar para `origin/main`.
+- [x] Criar commit e enviar para `origin/main`.
 - [ ] Publicar `@sidnei_ali/factory-agent@0.3.0` e validar a instalação pública por `npx`.
