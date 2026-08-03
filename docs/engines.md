@@ -8,7 +8,7 @@ Engines hospedam as skills e fornecem modelo, contexto e ferramentas. Elas são 
 |---|---|---|---|---|
 | `claude-code` | Claude Code | `CLAUDE.md` | `.agents/skills/` e `.claude/skills/` | `/factory-new` |
 | `codex` | Codex | `AGENTS.md` | `.agents/skills/` | `factory-new` |
-| `pi-agent` | Pi Agent | extensão local | `.agents/skills/` e `.pi/skills/` | `/factory-new` |
+| `pi-agent` | Pi Agent | extensão local | `.agents/skills/` | `/factory-new` |
 
 ## Detecção
 
@@ -27,7 +27,7 @@ factory add-engine pi-agent
 
 ## Skills universais
 
-`.agents/skills/` é a fonte instalada comum. Os espelhos existem quando a engine exige localização própria. Todas as skills seguem o mesmo contrato de responsabilidade, evidência, gate e handoff.
+`.agents/skills/` é a fonte instalada comum e já é descoberta nativamente pelo Pi Agent. Apenas o Claude Code recebe um espelho em `.claude/skills/`. Todas as skills seguem o mesmo contrato de responsabilidade, evidência, gate e handoff.
 
 ## Pi Agent
 

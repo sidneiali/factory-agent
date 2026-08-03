@@ -1,6 +1,6 @@
 {
   "name": "@sidnei_ali/factory-agent",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Fábrica de software multiagente orientada por especificações e evidências",
   "type": "module",
   "bin": {

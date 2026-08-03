@@ -46,7 +46,6 @@ As engines são separadas por vírgula. Sem `--engines`, a CLI tenta detectar en
 .factory/                         estado, configuração, providers, políticas e manifesto
 .agents/skills/factory-*/         skills universais
 .claude/skills/factory-*/         espelho quando Claude Code é selecionado
-.pi/skills/factory-*/             espelho quando Pi Agent é selecionado
 .pi/extensions/factory-agent/     extensão local do Pi Agent
 _factory_product/                 brief, requisitos, arquitetura e ADRs
 _factory_delivery/                planos, revisão, QA, aceite e documentação

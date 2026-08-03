@@ -27,7 +27,7 @@ Force push, gravação de credenciais e desativação de testes são proibidos a
 
 A extensão intercepta chamadas conhecidas de `bash`, `write` e `edit`. Ela bloqueia caminhos sensíveis, restringe escrita pelo agente atual e solicita confirmação para comandos classificados como risco.
 
-Caminhos como `.git`, `.env`, `node_modules`, `.pi/extensions`, `.pi/skills`, `.factory/policies.json` e `.factory/manifest.json` recebem proteção adicional.
+Caminhos como `.git`, `.env`, `node_modules`, `.pi/extensions`, `.factory/policies.json` e `.factory/manifest.json` recebem proteção adicional.
 
 !!! warning
     A interceptação depende das ferramentas conhecidas pela extensão. Um processo externo ou uma ferramenta não gerenciada pode escapar dessa camada. Use permissões mínimas e revise projetos antes de confiar neles.

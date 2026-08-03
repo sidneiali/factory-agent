@@ -10,7 +10,7 @@ Após `factory install`, abra o projeto na engine selecionada.
 |---|---|---|
 | Claude Code | `/factory-new` | `.agents/skills/` e `.claude/skills/` |
 | Codex | `factory-new` | `.agents/skills/` |
-| Pi Agent | `/factory-new` | `.agents/skills/` e `.pi/skills/` |
+| Pi Agent | `/factory-new` | `.agents/skills/` |
 
 A engine lê a skill do próximo agente, executa ferramentas disponíveis e respeita gates e limites de escrita.
 

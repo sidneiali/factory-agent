@@ -47,7 +47,6 @@ lib/
 .factory_operations/
 .agents/skills/factory-*/
 .claude/skills/factory-*/  # quando Claude Code for selecionado
-.pi/skills/factory-*/      # quando Pi Agent for selecionado
 .pi/extensions/factory-agent/  # extensão local do Pi Agent; wrapper no repositório fonte
 ```
 
@@ -77,7 +76,7 @@ Quando `actions.md` tiver checkbox aberto, o próximo agente é desenvolvimento.
 - Escrita atômica por arquivo temporário e rename para estado e manifestos.
 - Manifesto SHA-256 para preservar customizações.
 - Paths normalizados e confinados à raiz para impedir path traversal.
-- Skills universais em `.agents/skills`; espelhos opcionais em `.claude/skills` e `.pi/skills`.
+- Skills universais em `.agents/skills`, já descobertas pelo Pi Agent; espelho opcional apenas em `.claude/skills`.
 - Engines hospedeiras são separadas de providers de modelos.
 - O Pi Agent usa seu modelo ativo; o runtime direto usa a interface `ModelProvider`.
 - Ollama é acessado somente por URL configurável, sem download automático de modelos.

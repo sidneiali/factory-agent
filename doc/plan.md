@@ -99,3 +99,28 @@ Aprovado pelo usuário em 2026-08-02.
 - [ ] Publicar no npm e validar o pacote público.
 
 Impedimento: o registry recusou a publicação com `E403` porque a conta exige autenticação de dois fatores ou token granular com bypass de 2FA. A publicação permanece pendente até o usuário concluir esse gate diretamente no terminal.
+
+---
+
+# Plano aprovado — corrigir colisões de skills no Pi Agent
+
+Aprovado pelo usuário em 2026-08-02.
+
+## Premissas
+
+- `.agents/skills/` continuará como diretório universal e já é descoberto pelo Pi Agent.
+- Instalações novas do Pi não criarão o espelho redundante `.pi/skills/`.
+- O update removerá somente cópias legadas intactas; customizações serão preservadas e deixarão de ser gerenciadas.
+- A correção será publicada como `@sidnei_ali/factory-agent@0.2.1`.
+
+## Etapas
+
+- [x] Remover a duplicação de skills em novas instalações do Pi Agent.
+- [x] Migrar cópias legadas no update sem remover customizações.
+- [x] Adicionar testes de instalação e migração da colisão.
+- [x] Atualizar versão e documentação.
+- [x] Executar testes, aplicação, empacotamento e validação temporária.
+- [x] Criar registro da correção, revisar Git e efetuar commit.
+- [ ] Enviar a correção para `origin/main`.
+- [ ] Publicar e validar `@sidnei_ali/factory-agent@0.2.1`.
+

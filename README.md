@@ -93,7 +93,7 @@ Manutenção:
 ```text
 .factory/             estado, providers, propostas, políticas, eventos e manifesto
 .pi/extensions/       extensão local do Pi Agent
-.pi/skills/           skills específicas do Pi Agent
+.agents/skills/        skills universais, também descobertas pelo Pi Agent
 _factory_product/     brief, requisitos, arquitetura e ADRs
 _factory_delivery/    planos, ações, revisão, QA, aceite e documentação
 _factory_operations/  suporte e bugs
@@ -130,7 +130,7 @@ Os contratos internos permanecem em `docs/product/`.
 
 ## Pi Agent e Ollama
 
-A instalação `--engines=pi-agent` cria `.pi/extensions/factory-agent/` e `.pi/skills/`. Este repositório também contém um wrapper local em `.pi/extensions/factory-agent/index.ts`, permitindo usar e desenvolver a extensão no próprio projeto. Depois de confiar no projeto, use `/reload` no Pi se a extensão ainda não estiver carregada.
+A instalação `--engines=pi-agent` cria `.pi/extensions/factory-agent/` e usa as skills universais em `.agents/skills/`, que o Pi Agent descobre nativamente. Este repositório também contém um wrapper local em `.pi/extensions/factory-agent/index.ts`, permitindo usar e desenvolver a extensão no próprio projeto. Depois de confiar no projeto, use `/reload` no Pi se a extensão ainda não estiver carregada.
 
 A extensão registra os comandos `/factory-*`, as ferramentas `factory_status` e `factory_record_decision`, mostra o estágio na TUI e disponibiliza modelos de chat do Ollama como provider `factory-ollama`. Modelos exclusivamente de embedding não são registrados como chat.
 
