@@ -155,9 +155,9 @@ Aprovado pelo usuário em 2026-08-03.
 - [x] Atualizar documentação e versão para `0.3.0`.
 - [x] Criar registro da alteração, revisar Git e efetuar commit.
 - [x] Enviar para `origin/main`.
-- [ ] Publicar `@sidnei_ali/factory-agent@0.3.0`.
+- [x] Publicar `@sidnei_ali/factory-agent@0.3.0`.
 
-Impedimento: `npm publish --access public` retornou `E404`, indicando que a sessão atual não possui autenticação ou permissão para publicar no escopo `@sidnei_ali`.
+Resultado: versão `0.3.0` publicada com acesso público e promovida para a tag `latest`.
 
 ## Checkpoint de contexto — 2026-08-03 19:32
 
@@ -182,7 +182,7 @@ Arquivos centrais envolvidos:
 - `test/reversa-integration.test.js`
 - `docs/reversa-bridge.md`
 
-Próximo passo seguro: autenticar no npm com uma conta ou token autorizado para o escopo `@sidnei_ali` e repetir somente `npm publish --access public`; código, commit e push já foram concluídos.
+Entrega concluída: código e documentação enviados ao GitHub; `@sidnei_ali/factory-agent@0.3.0` publicado no npm e validado por instalação pública.
 
 ---
 
@@ -204,4 +204,4 @@ Aprovado pelo usuário em 2026-08-03.
 - [x] Validar testes, CLI, links internos, pacote e comandos documentados.
 - [x] Revisar `git status`, `git diff` e conteúdo preparado para commit.
 - [x] Criar commit e enviar para `origin/main`.
-- [ ] Publicar `@sidnei_ali/factory-agent@0.3.0` e validar a instalação pública por `npx`.
+- [x] Publicar `@sidnei_ali/factory-agent@0.3.0` e validar a instalação pública por `npx`.
